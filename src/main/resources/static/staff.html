@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickBite - Staff Dashboard</title>
+
+    <link rel="stylesheet" href="staff.css">
+    <script src="staff.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div>
+            <h1>QuickBite</h1>
+            <p>Canteen Staff Dashboard</p>
+        </div>
+
+        <a href="index.html">Student Page</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Welcome Section -->
+        <section class="welcome">
+            <h2>Manage Orders</h2>
+
+            <p>
+                View student bookings and update food preparation status.
+            </p>
+
+            <button id="refreshBtn" type="button">
+                Refresh Orders
+            </button>
+        </section>
+
+        <!-- Order Summary -->
+        <section class="summary">
+
+            <div class="summary-card">
+                <span>Total Orders</span>
+                <strong id="totalOrders">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Preparing</span>
+                <strong id="preparingOrders">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Ready</span>
+                <strong id="readyOrders">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Collected</span>
+                <strong id="collectedOrders">0</strong>
+            </div>
+
+        </section>
+
+        <!-- Success and Error Messages -->
+        <p id="message" role="status" aria-live="polite"></p>
+
+        <!-- Student Orders Section -->
+        <section class="student-orders">
+
+            <h2>Student Orders</h2>
+
+            <!-- Search and Filter -->
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by student, food, or order ID"
+                    aria-label="Search orders"
+                >
+
+                <select id="statusFilter" aria-label="Filter by order status">
+                    <option value="ALL">All Orders</option>
+                    <option value="BOOKED">Booked</option>
+                    <option value="PREPARING">Preparing</option>
+                    <option value="READY">Ready</option>
+                    <option value="COLLECTED">Collected</option>
+                </select>
+
+            </div>
+
+            <!-- Last Refresh Time -->
+            <p id="lastUpdated">Not refreshed yet</p>
+
+            <!-- Orders Loaded from Backend -->
+            <div id="ordersContainer" class="orders">
+                <p>Loading orders...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

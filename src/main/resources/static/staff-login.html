@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>QUICKBITE CSS TEST 123</title>
+<style>
+body {
+    background: red !important;
+    color: white !important;
+    font-family: Arial !important;
+}
+</style>
+<style>
+body {
+    background: linear-gradient(135deg, orange, red, purple) !important;
+    font-family: Arial, sans-serif !important;
+}
+
+h1, h2 {
+    color: darkgreen !important;
+}
+
+button {
+    background: linear-gradient(90deg, orange, red) !important;
+    color: white !important;
+    padding: 15px !important;
+    border: none !important;
+    border-radius: 12px !important;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickBite Staff Login</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #104b3d;
+    background: linear-gradient(135deg, #fff6dc, #ffe0c2, #ffb8a5);
+}
+
+.page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 35px;
+    padding: 35px 6%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 45px;
+}
+
+.logo {
+    font-size: 75px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: clamp(38px, 5vw, 60px);
+    color: #07523e;
+}
+
+.brand h1 span {
+    color: #ff7900;
+}
+
+.brand p {
+    margin: 3px 0;
+    font-size: 17px;
+}
+
+.slogan h2 {
+    display: table;
+    margin: 10px 0;
+    padding: 8px 22px;
+    color: white;
+    background: #19794e;
+    border-radius: 8px;
+    font-size: clamp(30px, 4vw, 46px);
+    font-style: italic;
+    transform: rotate(-2deg);
+}
+
+.slogan .yellow {
+    margin-left: 25px;
+    color: #17432e;
+    background: #ffcc26;
+}
+
+.features {
+    margin: 25px 0;
+    font-weight: bold;
+}
+
+.features span {
+    color: #ff572f;
+    margin: 0 5px;
+}
+
+.foods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.food {
+    width: 78px;
+    height: 78px;
+    display: grid;
+    place-items: center;
+    border-radius: 20px;
+    font-size: 43px;
+    box-shadow: 0 8px 20px #74402020;
+    transition: 0.3s;
+}
+
+.food:hover {
+    transform: translateY(-6px) rotate(-4deg);
+}
+
+.food:nth-child(1) { background: #ffe1ac; }
+.food:nth-child(2) { background: #ffdfbd; }
+.food:nth-child(3) { background: #fff0a8; }
+.food:nth-child(4) { background: #ffcfc4; }
+.food:nth-child(5) { background: #d9f2d4; }
+.food:nth-child(6) { background: #d7edff; }
+
+.tagline {
+    margin-top: 28px;
+    font-size: 19px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.login-area {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    max-width: 490px;
+    padding: 38px;
+    text-align: center;
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 20px 60px #74402030;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background: linear-gradient(90deg, #ffc107, #ff791b, #ff3939, #9c48ff);
+}
+
+.chef {
+    width: 82px;
+    height: 82px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffb000, #ff482d);
+    color: white;
+    font-size: 42px;
+    box-shadow: 0 8px 22px #ff642d40;
+}
+
+.card h2 {
+    margin: 8px 0;
+    font-size: 34px;
+}
+
+.subtitle {
+    margin-bottom: 28px;
+    color: #77817d;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 58px;
+    margin-bottom: 16px;
+    padding: 0 15px;
+    border: 1px solid #d8e0e6;
+    border-radius: 14px;
+}
+
+.input-box:focus-within {
+    border-color: #ff8125;
+    box-shadow: 0 0 0 4px #ff812526;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.login-button {
+    width: 100%;
+    min-height: 60px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    background: linear-gradient(100deg, #ffad12, #ff741c, #ff382e);
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 9px 22px #ff642d38;
+    transition: 0.25s;
+}
+
+.login-button:hover {
+    transform: translateY(-3px);
+    filter: saturate(1.3);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 23px 0;
+    color: #777;
+}
+
+.divider span {
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
+
+.home-button {
+    display: block;
+    padding: 17px 10px;
+    border-radius: 14px;
+    background: linear-gradient(100deg, #e2f7e5, #c8efd6);
+    color: #176443;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+.home-button:hover {
+    background: #b4e8c6;
+    transform: translateY(-2px);
+}
+
+.bottom {
+    margin-top: 26px;
+    font-style: italic;
+    color: #515d56;
+}
+
+#error, #logout {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#error { color: #d52222; }
+#logout { color: #16804a; }
+
+@media (max-width: 850px) {
+    .page {
+        grid-template-columns: 1fr;
+        padding: 25px 15px;
+    }
+
+    .brand {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .food-section {
+        text-align: center;
+    }
+
+    .slogan h2 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .foods {
+        justify-content: center;
+    }
+
+    .tagline {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 48px; }
+    .brand h1 { font-size: 36px; }
+    .brand p { font-size: 12px; }
+    .food { width: 60px; height: 60px; font-size: 33px; }
+    .card { padding: 28px 20px; }
+    .card h2 { font-size: 29px; }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+    <section class="food-section">
+        <div class="brand">
+            <div class="logo">🍔</div>
+            <div>
+                <h1>Quick<span>Bite</span></h1>
+                <p>Smart Canteen Pre-Booking</p>
+            </div>
+        </div>
+
+        <div class="slogan">
+            <h2>Good Food,</h2>
+            <h2 class="yellow">Better Days</h2>
+        </div>
+
+        <p class="features">
+            Fresh Meals <span>•</span>
+            Happy Students <span>•</span> Zero Queues
+        </p>
+
+        <div class="foods">
+            <div class="food">🍔</div>
+            <div class="food">🍛</div>
+            <div class="food">🍟</div>
+            <div class="food">🍕</div>
+            <div class="food">🍜</div>
+            <div class="food">🥤</div>
+        </div>
+
+        <p class="tagline">🍜 Good Food Makes a Great Day! ❤️</p>
+    </section>
+
+    <section class="login-area">
+        <div class="card">
+            <div class="chef">♨</div>
+
+            <h2>Staff Login</h2>
+            <p class="subtitle">Access the QuickBite Staff Dashboard</p>
+
+            <form action="/login" method="post">
+                <div class="input-box">
+                    <span>👤</span>
+                    <input name="username" type="text"
+                           placeholder="Username"
+                           autocomplete="username" required>
+                </div>
+                
+<div class="input-box">
+    <span>🔒</span>
+
+    <input
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Password"
+        minlength="8"
+        pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"
+        title="Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character."
+        autocomplete="current-password"
+        required
+    >
+
+    <button
+        type="button"
+        class="toggle-password"
+        onclick="togglePasswordVisibility()"
+    >👁</button>
+</div>
+
+    
+                <button type="submit" class="login-button">
+                    ➜ &nbsp; Login to Dashboard
+                </button>
+            </form>
+
+            <div class="divider">
+                <span></span> or <span></span>
+            </div>
+
+            <a href="/index.html" class="home-button">
+                🏠 &nbsp; Back to Student Home
+            </a>
+
+            <p class="bottom">🍜 Good Food Makes a Great Day! ♡</p>
+            <p id="error"></p>
+            <p id="logout"></p>
+        </div>
+    </section>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+if (params.has("error")) {
+    document.getElementById("error").textContent =
+        "Invalid username or password. Please try again.";
+}
+
+if (params.has("logout")) {
+    document.getElementById("logout").textContent =
+        "You have logged out successfully!";
+}
+</script>
+
+<script>
+function togglePasswordVisibility() {
+    const password = document.getElementById("password");
+    const button = document.querySelector(".toggle-password");
+
+    if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "🙈";
+    } else {
+        password.type = "password";
+        button.textContent = "👁";
+    }
+}
+
+document.querySelector("form").addEventListener("submit", function(event) {
+    const password = document.getElementById("password");
+
+    const validPassword =
+        password.value.length >= 8 &&
+        /[A-Z]/.test(password.value) &&
+        /[a-z]/.test(password.value) &&
+        /[0-9]/.test(password.value) &&
+        /[^A-Za-z0-9]/.test(password.value);
+
+    if (!validPassword) {
+        event.preventDefault();
+        password.setCustomValidity(
+            "Use at least 8 characters with uppercase, lowercase, number, and special character."
+        );
+        password.reportValidity();
+    } else {
+        password.setCustomValidity("");
+    }
+});
+
+document.getElementById("password").addEventListener("input", function() {
+    this.setCustomValidity("");
+});
+</script>
+</body>
+</html>

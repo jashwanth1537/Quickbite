@@ -1,0 +1,57 @@
+# Maven build output
+target/
+
+# Maven wrapper files - keep these tracked
+# .mvn/wrapper/
+# mvnw
+# mvnw.cmd
+
+# Logs
+*.log
+logs/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local database files
+data/*.mv.db
+data/*.trace.db
+data/*.lock.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Java compiled files
+*.class
+
+# Packaged Java applications
+*.jar
+*.war
+
+# Crash reports
+hs_err_pid*
+replay_pid*
+
+# Test reports
+surefire-reports/
+failsafe-reports/
+
+# Local development settings
+application-local.properties
+application-local.yml
+
+# Coverage reports
+coverage/

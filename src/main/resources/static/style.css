@@ -1,0 +1,770 @@
+
+/* ========================================
+   QUICKBITE - SMART CANTEEN DESIGN
+   ======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #075b45;
+    --dark-green: #064538;
+    --light-green: #eaf8ef;
+    --orange: #ff8a22;
+    --blue: #0877c9;
+    --text: #153b3a;
+    --white: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f0f7f2 !important;
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.hero {
+    min-height: 155px;
+    padding: 25px 5%;
+    background: linear-gradient(
+        115deg,
+        #073f35,
+        #075b45,
+        #087b56
+    ) !important;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 5px 18px #003d3022;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-icon {
+    font-size: 58px;
+}
+
+.brand h1 {
+    color: white;
+    font-size: clamp(30px, 4vw, 45px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.brand h1 span {
+    color: #ffc93d;
+}
+
+.brand p {
+    color: #e5f5ef;
+    font-size: 16px;
+    margin-top: 6px;
+}
+
+.hero-message {
+    text-align: center;
+    transform: rotate(-3deg);
+}
+
+.hero-message h2:first-child {
+    color: #75f0d4;
+    font-style: italic;
+    font-size: 30px;
+}
+
+.hero-message h2:last-child {
+    color: #ffcf42;
+    font-style: italic;
+    font-size: 30px;
+}
+
+.hero-food {
+    font-size: 46px;
+    letter-spacing: 5px;
+}
+
+/* ========================================
+   MAIN LAYOUT
+   ======================================== */
+
+.container {
+    width: 94%;
+    max-width: 1550px;
+    margin: 28px auto;
+}
+
+.panel {
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+/* ========================================
+   SECTION BACKGROUNDS
+   ======================================== */
+
+.timing-section {
+    background: linear-gradient(
+        115deg,
+        #edf9f6,
+        #f3fbff
+    );
+    border: 1px solid #d9eee6;
+}
+
+.food-section {
+    background: linear-gradient(
+        115deg,
+        #fff4e8,
+        #fffaf3
+    );
+    border: 1px solid #f5e5d1;
+}
+
+.tracking-section {
+    background: linear-gradient(
+        115deg,
+        #e1f3ff,
+        #f0f9ff
+    );
+    border: 1px solid #cde8fa;
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(300px, 1.3fr);
+    gap: 25px;
+    align-items: center;
+}
+
+/* ========================================
+   SECTION HEADINGS
+   ======================================== */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+}
+
+.section-heading h2,
+.tracking-intro h2 {
+    font-size: 27px;
+    line-height: 1.3;
+    color: #104b40;
+}
+
+.section-heading p,
+.tracking-intro p {
+    color: #54716f;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.heading-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    background: #147d58;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.heading-icon.orange {
+    background: linear-gradient(
+        135deg,
+        #ffae22,
+        #f04d13
+    );
+}
+
+.heading-icon.blue {
+    background: linear-gradient(
+        135deg,
+        #168bd8,
+        #0751a0
+    );
+}
+
+.fresh-label {
+    margin-left: auto;
+    border-radius: 25px;
+    padding: 10px 16px;
+    background: #e1f6df;
+    color: #17643b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ========================================
+   CANTEEN TIMING CARDS
+   ======================================== */
+
+.timing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.timing-card {
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.timing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px #00000012;
+}
+
+.timing-card h3 {
+    font-size: 19px;
+    margin-bottom: 9px;
+    color: #194c3c;
+}
+
+.timing-card p {
+    font-size: 14px;
+    color: #334e4a;
+}
+
+.timing-card.breakfast {
+    background: #fff2cf;
+    border-color: #ffe092;
+}
+
+.timing-card.lunch {
+    background: #def7e3;
+    border-color: #b4e8be;
+}
+
+.timing-card.snacks {
+    background: #f0e4ff;
+    border-color: #dfc6ff;
+}
+
+.timing-card.dinner {
+    background: #dcefff;
+    border-color: #b8dfff;
+}
+
+/* ========================================
+   FOOD CARDS
+   ======================================== */
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.food-card {
+    min-width: 0;
+    overflow: hidden;
+    background: white;
+    border: 1px solid #e9e4da;
+    border-radius: 17px !important;
+    box-shadow: 0 5px 15px #00000020 !important;
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px #38240d20 !important;
+}
+
+.food-image {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 14px 14px 0 0;
+    background-color: #f5f5f5;
+}
+
+/* Keep food cards consistent */
+.food-card {
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+/* Make images responsive on mobile */
+@media (max-width: 600px) {
+    .food-image {
+        height: 160px;
+    }
+}
+
+}
+
+.food-info {
+    padding: 16px;
+}
+
+.food-info h3 {
+    font-size: 19px;
+    color: #173e3d;
+    overflow-wrap: anywhere;
+}
+
+.food-price {
+    color: #087c45;
+    font-weight: 800;
+    font-size: 22px;
+    margin: 6px 0 13px;
+}
+
+.food-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.meal-tag {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #e5f6e8;
+    color: #17653b;
+}
+
+.add-button {
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    background: linear-gradient(
+        135deg,
+        #11885f,
+        #075740
+    );
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+    box-shadow: 0 3px 7px #07574030;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.add-button:hover {
+    filter: brightness(1.1);
+    transform: scale(1.08);
+}
+
+/* ========================================
+   BOOKING MESSAGES
+   ======================================== */
+
+.message {
+    margin-top: 18px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   ORDER TRACKING
+   ======================================== */
+
+.tracking-intro .heading-icon {
+    margin-bottom: 12px;
+}
+
+.track-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.track-form input {
+    min-width: 0;
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #d0e6f4;
+    border-radius: 12px;
+    background: white;
+    font-size: 15px;
+    outline: none;
+}
+
+.track-form input:focus {
+    border-color: #0877c9;
+    box-shadow: 0 0 0 3px #0877c920;
+}
+
+.track-form button {
+    padding: 13px 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(
+        135deg,
+        #087b59,
+        #07503f
+    );
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.track-form button:hover {
+    transform: translateY(-2px);
+}
+
+.tracking-progress {
+    background: #ffffffd9;
+    border: 1px solid #d5eaf6;
+    border-radius: 17px;
+    padding: 22px 15px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #82949d;
+    font-size: 11px;
+    text-align: center;
+}
+
+.progress-step span {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #edf1f3;
+    font-size: 23px;
+    border: 4px solid #e2e8eb;
+}
+
+.progress-step:nth-of-type(1) span {
+    color: #15944d;
+}
+
+.progress-step:nth-of-type(3) span {
+    color: #e99a00;
+}
+
+.progress-step:nth-of-type(5) span {
+    color: #a325c4;
+}
+
+.progress-step:nth-of-type(7) span {
+    color: #0878d1;
+}
+
+.progress-step.active {
+    color: #08764d;
+    font-weight: 700;
+}
+
+.progress-step.active span,
+.progress-step.done span {
+    color: white;
+    background: #168b59;
+    border-color: #c9f0d6;
+}
+
+.progress-arrow {
+    color: #8bb4c6;
+    font-size: 23px;
+    padding-top: 9px;
+}
+
+.status-message {
+    flex-basis: 100%;
+    text-align: center;
+    background: #e8f8ec;
+    color: #17663c;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+footer {
+    padding: 25px 5%;
+    background: #064538;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+footer strong {
+    font-size: 22px;
+}
+
+footer p,
+footer span {
+    font-size: 14px;
+    color: #e5f5ef;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - TABLETS
+   ======================================== */
+
+@media (max-width: 1000px) {
+    .timing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .food-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .tracking-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-food {
+        display: none;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE
+   ======================================== */
+
+@media (max-width: 650px) {
+    .hero {
+        padding: 20px;
+    }
+
+    .brand-icon {
+        font-size: 43px;
+    }
+
+    .hero-message {
+        display: none;
+    }
+
+    .container {
+        width: 95%;
+        margin: 14px auto;
+    }
+
+    .panel {
+        padding: 16px;
+        border-radius: 15px;
+    }
+
+    .section-heading h2,
+    .tracking-intro h2 {
+        font-size: 23px;
+    }
+
+    .heading-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 29px;
+    }
+
+    .timing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .food-image {
+        height: 125px;
+    }
+
+    .food-info {
+        padding: 11px;
+    }
+
+    .food-info h3 {
+        font-size: 16px;
+    }
+
+    .food-price {
+        font-size: 18px;
+    }
+
+    .fresh-label {
+        margin-left: 0;
+    }
+
+    .track-form {
+        flex-direction: column;
+    }
+
+    .track-form button {
+        width: 100%;
+    }
+
+    .progress-arrow {
+        display: none;
+    }
+
+    .tracking-progress {
+        gap: 15px;
+    }
+
+    .progress-step {
+        flex: 1 1 35%;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .food-card {
+    border-radius: 17px !important;
+    background: white !important;
+    padding: 20px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15) !important;
+}
+body {
+    background: #f0f7f2 !important;
+}
+
+/
+/* ===== QUICKBITE ORDER SUCCESS POPUP ===== */
+
+.order-popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 40, 30, 0.7);
+    backdrop-filter: blur(5px);
+    animation: qbFadeIn 0.3s ease;
+}
+
+.order-popup {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #ffffff, #e2fff0);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: qbPopIn 0.4s ease;
+}
+
+.order-popup-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #16c784, #087443);
+    color: white;
+    font-size: 48px;
+    box-shadow: 0 8px 22px rgba(22, 199, 132, 0.3);
+}
+
+.order-popup h2 {
+    margin: 10px 0;
+    color: #087443;
+    font-size: 27px;
+}
+
+.order-popup p {
+    color: #374151;
+    line-height: 1.7;
+    margin: 12px 0;
+}
+
+.order-popup-id {
+    display: inline-block;
+    margin: 12px 0 20px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    background: #d1fae5;
+    color: #065f46;
+    font-weight: bold;
+}
+
+.order-popup button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #059669, #10b981);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-popup button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(5, 150, 105, 0.3);
+}
+
+@keyframes qbFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes qbPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+}

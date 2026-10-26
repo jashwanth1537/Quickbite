@@ -1,0 +1,341 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #fff4d6, #ffe0c2, #ffb5a7);
+    color: #104b3d;
+}
+
+.page-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 35px;
+    padding: 35px 5%;
+}
+
+.food-section {
+    padding: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+.burger-logo {
+    font-size: 70px;
+}
+
+.brand h1 {
+    font-size: 54px;
+    margin: 0;
+    color: #064d3d;
+}
+
+.brand h1 span {
+    color: #ff7900;
+}
+
+.brand p {
+    font-size: 17px;
+    margin-top: 5px;
+}
+
+.slogan h2 {
+    display: table;
+    padding: 8px 22px;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 38px;
+    font-style: italic;
+    color: white;
+    background: #13834f;
+    transform: rotate(-2deg);
+}
+
+.slogan .yellow-text {
+    color: #173e2d;
+    background: #ffcc25;
+    margin-left: 25px;
+}
+
+.features {
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.features span {
+    color: #ff542d;
+    padding: 0 5px;
+}
+
+.food-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.food-item {
+    width: 85px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    font-size: 45px;
+    box-shadow: 0 8px 20px #743c2520;
+    transition: 0.3s;
+}
+
+.food-item:hover {
+    transform: translateY(-7px) rotate(-4deg);
+}
+
+.burger { background: #ffe2a8; }
+.biryani { background: #ffd8b5; }
+.fries { background: #fff0a8; }
+.pizza { background: #ffc7bd; }
+.noodles { background: #d6f4d4; }
+.drink { background: #cceaff; }
+
+.food-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.food-message span {
+    font-size: 35px;
+}
+
+.login-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    position: relative;
+    width: 100%;
+    max-width: 490px;
+    padding: 38px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 28px;
+    border: 1px solid #fff;
+    box-shadow: 0 20px 60px #884a302b;
+    overflow: hidden;
+}
+
+.login-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background: linear-gradient(90deg, #ffc107, #ff7b16, #ff3838, #9c48ff);
+}
+
+.chef-icon {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffad00, #ff472e);
+    color: white;
+    border-radius: 50%;
+    font-size: 42px;
+    box-shadow: 0 8px 22px #ff642d40;
+}
+
+.login-card h2 {
+    margin: 10px 0;
+    font-size: 34px;
+    color: #104b3d;
+}
+
+.subtitle {
+    color: #6b7774;
+    margin-bottom: 28px;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 0 15px;
+    height: 58px;
+    background: #fff;
+    border: 1px solid #d8e0e6;
+    border-radius: 14px;
+    transition: 0.3s;
+}
+
+.input-box:focus-within {
+    border-color: #ff8625;
+    box-shadow: 0 0 0 4px #ff862526;
+}
+
+.input-icon {
+    font-size: 21px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+}
+
+.login-button {
+    width: 100%;
+    min-height: 60px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    background: linear-gradient(100deg, #ffae12, #ff741c, #ff382e);
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 9px 22px #ff642d38;
+    transition: 0.3s;
+}
+
+.login-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 25px #ff642d55;
+}
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 23px 0;
+}
+
+.or-divider span {
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
+
+.or-divider p {
+    color: #777;
+}
+
+.home-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 54px;
+    padding: 12px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #176443;
+    background: linear-gradient(100deg, #e2f7e5, #c8efd6);
+    transition: 0.3s;
+}
+
+.home-button:hover {
+    background: #b4e8c6;
+    transform: translateY(-2px);
+}
+
+.bottom-message {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #515d56;
+    font-style: italic;
+}
+
+.bottom-message > span {
+    font-size: 30px;
+}
+
+.bottom-message p span {
+    color: #ff4d39;
+    font-size: 23px;
+}
+
+.error-message {
+    color: #d52222;
+    font-weight: bold;
+}
+
+.success-message {
+    color: #16804a;
+    font-weight: bold;
+}
+
+@media (max-width: 900px) {
+    .page-container {
+        grid-template-columns: 1fr;
+        padding: 25px 15px;
+    }
+
+    .food-section {
+        text-align: center;
+    }
+
+    .brand,
+    .food-message {
+        justify-content: center;
+    }
+
+    .slogan h2 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .food-gallery {
+        justify-content: center;
+    }
+
+    .login-card {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand h1 {
+        font-size: 37px;
+    }
+
+    .burger-logo {
+        font-size: 48px;
+    }
+
+    .food-item {
+        width: 65px;
+        height: 65px;
+        font-size: 35px;
+    }
+
+    .login-card {
+        padding: 30px 20px;
+    }
+}

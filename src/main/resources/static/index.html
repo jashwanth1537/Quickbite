@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBite | Smart Canteen</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="hero">
+    <div class="brand">
+        <span class="brand-icon">🍔</span>
+        <div>
+            <h1>Quick<span>Bite</span></h1>
+            <p>Smart Canteen Pre-Booking</p>
+        </div>
+    </div>
+    <div class="hero-message">
+        <h2>Good Food,</h2>
+        <h2>Better Days ✨</h2>
+    </div>
+    <div class="hero-food">🍗 🍟 🥤</div>
+</header>
+
+<main class="container">
+
+    <section class="timing-section panel">
+        <div class="section-heading">
+            <span class="heading-icon">◷</span>
+            <div>
+                <h2>Canteen Timings</h2>
+                <p>Our canteen is open at the following times</p>
+            </div>
+        </div>
+        <div id="timings" class="timing-grid">
+            <p>Loading canteen timings...</p>
+        </div>
+    </section>
+
+    <section class="food-section panel">
+        <div class="section-heading">
+            <span class="heading-icon orange">♨</span>
+            <div>
+                <h2>Available Food</h2>
+                <p>Tasty meals, fresh ingredients, just for you!</p>
+            </div>
+            <span class="fresh-label">🥗 Healthy · Fresh · Delicious</span>
+        </div>
+
+        <div id="food" class="food-grid">
+            <p>Loading delicious food...</p>
+        </div>
+
+        <div id="booking-message" class="message" aria-live="polite"></div>
+    </section>
+
+    <section class="tracking-section panel">
+        <div class="tracking-intro">
+            <span class="heading-icon blue">⌕</span>
+            <div>
+                <h2>Track Your Order</h2>
+                <p>Enter your Order ID to check the current status.</p>
+            </div>
+            <div class="track-form">
+                <input type="number" id="orderId" min="1"
+                       placeholder="Example: 1">
+                <button type="button" onclick="trackOrder()">
+                    🔍 Track Order
+                </button>
+            </div>
+        </div>
+
+        <div class="tracking-progress">
+            <div class="progress-step" data-status="BOOKED">
+                <span>✓</span>
+                <strong>BOOKED</strong>
+            </div>
+            <div class="progress-arrow">→</div>
+            <div class="progress-step" data-status="PREPARING">
+                <span>♨</span>
+                <strong>PREPARING</strong>
+            </div>
+            <div class="progress-arrow">→</div>
+            <div class="progress-step" data-status="READY">
+                <span>♧</span>
+                <strong>READY</strong>
+            </div>
+            <div class="progress-arrow">→</div>
+            <div class="progress-step" data-status="COLLECTED">
+                <span>✓</span>
+                <strong>COLLECTED</strong>
+            </div>
+            <p id="orderStatus" class="status-message">
+                Enter your order ID and click Track Order.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <strong>🍔 QuickBite</strong>
+    <p>Eat Smart &nbsp; | &nbsp; Save Time &nbsp; | &nbsp; Stay Ahead</p>
+    <span>❤️ Made for Students</span>
+</footer>
+
+<script src="/script.js"></script>
+</body>
+</html>
