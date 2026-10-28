@@ -1,36 +1,46 @@
 
 /* =========================================
-   QUICKBITE - FOOD IMAGE PATHS
-   Images are stored in static/images/
+   QUICKBITE - FOOD IMAGE MAPPING
 ========================================= */
 
-// Update these paths if your image filenames are different.
 const foodImages = {
-    "pizza": "/images/pizza.png",
+    "chicken fried rice": "/images/chicken%20fried%20rice.png",
+    "egg fried rice": "/images/egg%20fried%20rice.png",
+    "veg fried rice": "/images/veg%20fried%20rice.png",
+    "vegetable fried rice": "/images/veg%20fried%20rice.png",
+    "paneer fried rice": "/images/paneer%20fried%20rice.png",
     "biryani": "/images/biryani.png",
-    "burger": "/images/burger.png",
-    "sandwich": "/images/sandwich.png",
-    "dosa": "/images/dosa.png",
-    "idli": "/images/idli.png",
-    "rice": "/images/rice.png",
+    "meals": "/images/meals.png",
+    "rice": "/images/veg%20fried%20rice.png",
+    "chicken noodles": "/images/chicken%20noodles.png",
+    "egg noodles": "/images/egg%20noodles.png",
+    "veg noodles": "/images/veg%20noodles.png",
+    "vegetable noodles": "/images/veg%20noodles.png",
     "samosa": "/images/samosa.png",
-    "noodles": "/images/noodles.png"
+    "masala dosa": "/images/masala%20dosa.png",
+    "onion dosa": "/images/onion%20dosa.png",
+    "plain dosa": "/images/plain%20dosa.png",
+    "idly": "/images/idly.png",
+    "idli": "/images/idly.png",
+    "mysore bonda": "/images/mysore%20bonda.png",
+    "vada": "/images/vada.png",
+    "puri": "/images/puri.png",
+    "chapathi": "/images/chapathi.png"
 };
 
-/* Find the correct local image for each food */
 function getFoodImage(name) {
-    const key = String(name || "").toLowerCase().trim();
+    const key = String(name || "")
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, " ");
 
-    for (const foodName of Object.keys(foodImages)) {
-        if (key.includes(foodName)) {
-            return foodImages[foodName];
-        }
-    }
-
-    return "/images/meals.png";
+    return foodImages[key] || "/images/meals.png";
 }
 
-/* Safely display text received from the API */
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -42,19 +52,15 @@ function escapeHTML(value) {
 }
 
 /* =========================================
-   COLOURFUL ORDER SUCCESS POPUP
+   ORDER SUCCESS POPUP
 ========================================= */
 
 function showOrderPopup(order) {
-    // Remove an existing popup, if any.
     document.getElementById("orderPopupOverlay")?.remove();
 
     const overlay = document.createElement("div");
     overlay.id = "orderPopupOverlay";
     overlay.className = "order-popup-overlay";
-
-    const orderId = order?.id ?? "Confirmed";
-    const foodName = order?.foodName ?? "Your selected food";
 
     overlay.innerHTML = `
         <div class="order-popup"
@@ -73,11 +79,11 @@ function showOrderPopup(order) {
             </p>
 
             <div class="order-popup-food">
-                🍽️ ${escapeHTML(foodName)}
+                🍽️ ${escapeHTML(order?.foodName || "Your selected food")}
             </div>
 
             <div class="order-popup-id">
-                Order ID: ${escapeHTML(orderId)}
+                Order ID: ${escapeHTML(order?.id ?? "Confirmed")}
             </div>
 
             <p>
@@ -105,22 +111,16 @@ function showOrderPopup(order) {
     }
 
     function handleEscape(event) {
-        if (event.key === "Escape") {
-            closePopup();
-        }
+        if (event.key === "Escape") closePopup();
     }
 
     closeButton.addEventListener("click", closePopup);
 
-    // Clicking outside the popup also closes it.
     overlay.addEventListener("click", event => {
-        if (event.target === overlay) {
-            closePopup();
-        }
+        if (event.target === overlay) closePopup();
     });
 
     document.addEventListener("keydown", handleEscape);
-
     closeButton.focus();
 }
 
@@ -128,140 +128,138 @@ function showOrderPopup(order) {
    LOAD CANTEEN TIMINGS
 ========================================= */
 
-function loadTimings() {
-    fetch("/api/timings")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Could not load canteen timings.");
-            }
+async function loadTimings() {
+    const container = document.getElementById("timings");
+    if (!container) return;
 
-            return response.json();
-        })
-        .then(data => {
-            const container = document.getElementById("timings");
-
-            if (!container) return;
-
-            if (!Array.isArray(data) || data.length === 0) {
-                container.textContent = "No canteen timings available.";
-                return;
-            }
-
-            container.innerHTML = data.map(timing => {
-                const meal = escapeHTML(timing.mealType);
-
-                const color = String(timing.mealType || "")
-                    .toLowerCase()
-                    .replace(/[^a-z0-9_-]/g, "");
-
-                return `
-                    <div class="timing-card ${color}">
-                        <h3>${meal}</h3>
-                        <p>
-                            ${escapeHTML(timing.startTime)} -
-                            ${escapeHTML(timing.endTime)}
-                        </p>
-                    </div>
-                `;
-            }).join("");
-        })
-        .catch(error => {
-            const container = document.getElementById("timings");
-
-            if (container) {
-                container.textContent =
-                    "Unable to load canteen timings.";
-            }
-
-            console.error("Timings error:", error);
+    try {
+        const response = await fetch("/api/timings", {
+            cache: "no-store"
         });
+
+        if (!response.ok) {
+            throw new Error("Unable to load timings.");
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data) || data.length === 0) {
+            container.textContent = "No canteen timings available.";
+            return;
+        }
+
+        container.innerHTML = data.map(timing => {
+            const mealType = String(timing.mealType || "");
+            const color = mealType.toLowerCase()
+                .replace(/[^a-z0-9_-]/g, "");
+
+            return `
+                <div class="timing-card ${color}">
+                    <h3>${escapeHTML(mealType)}</h3>
+                    <p>
+                        ${escapeHTML(timing.startTime)} -
+                        ${escapeHTML(timing.endTime)}
+                    </p>
+                </div>
+            `;
+        }).join("");
+    } catch (error) {
+        container.textContent = "Unable to load canteen timings.";
+        console.error("Timings error:", error);
+    }
 }
 
 /* =========================================
-   LOAD AVAILABLE FOOD
+   LOAD ALL AVAILABLE FOOD
+   No weekday restrictions.
 ========================================= */
 
-function loadFood() {
+async function loadFood() {
     const container = document.getElementById("food");
-
     if (!container) return;
 
     container.textContent = "Loading available food...";
 
-    fetch("/api/food")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(
-                    "Could not load available food. HTTP " +
-                    response.status
-                );
-            }
-
-            return response.json();
-        })
-        .then(data => {
-            if (!Array.isArray(data) || data.length === 0) {
-                container.textContent =
-                    "No food is available right now.";
-                return;
-            }
-
-            container.innerHTML = data.map(food => {
-                const name = escapeHTML(food.name);
-                const meal = escapeHTML(food.mealType);
-                const image = getFoodImage(food.name);
-
-                const price = Number(food.price);
-
-                const displayPrice = Number.isFinite(price)
-                    ? price.toFixed(price % 1 === 0 ? 0 : 2)
-                    : escapeHTML(food.price);
-
-                const foodId = Number(food.id);
-
-                return `
-                    <article class="food-card">
-                        <img
-                            class="food-image"
-                            src="${escapeHTML(image)}"
-                            alt="${name}"
-                            loading="lazy"
-                            onerror="this.onerror=null;
-                                     this.src='/images/meals.png';"
-                        >
-
-                        <div class="food-info">
-                            <h3>${name}</h3>
-
-                            <p class="food-price">
-                                ₹${displayPrice}
-                            </p>
-
-                            <div class="food-bottom">
-                                <span class="meal-tag">
-                                    ${meal}
-                                </span>
-
-                                <button
-                                    class="add-button"
-                                    type="button"
-                                    data-food-id="${escapeHTML(foodId)}"
-                                    data-food-name="${name}"
-                                    aria-label="Book ${name}">
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                `;
-            }).join("");
-        })
-        .catch(error => {
-            container.textContent =
-                "Unable to load available food. Please refresh the page.";
-
-            console.error("Food loading error:", error);
+    try {
+        const response = await fetch("/api/food", {
+            cache: "no-store"
         });
+
+        if (!response.ok) {
+            throw new Error(
+                "Food API returned HTTP " + response.status
+            );
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error("Food API did not return a list.");
+        }
+
+        // Display every food item marked as available.
+        const availableFood = data.filter(food =>
+            food.available === true ||
+            String(food.available).toLowerCase() === "true"
+        );
+
+        if (availableFood.length === 0) {
+            container.textContent =
+                "No food available. Please check your food database.";
+            return;
+        }
+
+        container.innerHTML = availableFood.map(food => {
+            const name = escapeHTML(food.name);
+            const meal = escapeHTML(food.mealType || "Food");
+            const image = getFoodImage(food.name);
+            const price = Number(food.price);
+            const foodId = Number(food.id);
+
+            const displayPrice = Number.isFinite(price)
+                ? price.toFixed(price % 1 === 0 ? 0 : 2)
+                : escapeHTML(food.price);
+
+            return `
+                <article class="food-card">
+                    <img
+                        class="food-image"
+                        src="${escapeHTML(image)}"
+                        alt="${name}"
+                        loading="lazy"
+                        onerror="this.onerror=null;this.src='/images/meals.png';"
+                    >
+
+                    <div class="food-info">
+                        <h3>${name}</h3>
+
+                        <p class="food-price">
+                            ₹${displayPrice}
+                        </p>
+
+                        <div class="food-bottom">
+                            <span class="meal-tag">${meal}</span>
+
+                            <button
+                                class="add-button"
+                                type="button"
+                                data-food-id="${foodId}"
+                                data-food-name="${name}"
+                                aria-label="Book ${name}">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+    } catch (error) {
+        container.textContent =
+            "Unable to load food. Please refresh the page.";
+
+        console.error("Food loading error:", error);
+    }
 }
 
 /* =========================================
@@ -270,13 +268,12 @@ function loadFood() {
 
 document.addEventListener("click", event => {
     const button = event.target.closest(".add-button");
-
     if (!button) return;
 
-    const foodId = Number(button.dataset.foodId);
-    const foodName = button.dataset.foodName;
-
-    bookFood(foodId, foodName);
+    bookFood(
+        Number(button.dataset.foodId),
+        button.dataset.foodName
+    );
 });
 
 /* =========================================
@@ -287,22 +284,20 @@ async function bookFood(foodId, foodName) {
     const message = document.getElementById("booking-message");
 
     if (!Number.isFinite(foodId) || foodId <= 0) {
-        if (message) {
-            message.textContent =
-                "This food item has no valid ID. Check the food API.";
-        }
+        const errorMessage = "Invalid food ID. Please check /api/food.";
+
+        if (message) message.textContent = errorMessage;
+        else alert(errorMessage);
 
         return;
     }
 
     const studentName = prompt("Enter your name:");
 
-    if (!studentName || !studentName.trim()) {
-        return;
-    }
+    if (!studentName || !studentName.trim()) return;
 
     const pickupTime = prompt(
-        "Enter pickup date and time in this format:\n" +
+        "Enter pickup date and time:\n" +
         "YYYY-MM-DDTHH:MM:SS\n\n" +
         "Choose a time at least 30 minutes from now."
     );
@@ -310,27 +305,21 @@ async function bookFood(foodId, foodName) {
     if (!pickupTime) return;
 
     const selectedTime = new Date(pickupTime);
-    const now = new Date();
 
     if (
         Number.isNaN(selectedTime.getTime()) ||
-        selectedTime.getTime() < now.getTime() + 30 * 60 * 1000
+        selectedTime.getTime() < Date.now() + 30 * 60 * 1000
     ) {
-        if (message) {
-            message.textContent =
-                "Choose a valid pickup time at least 30 minutes from now.";
-        } else {
-            alert(
-                "Choose a valid pickup time at least 30 minutes from now."
-            );
-        }
+        const errorMessage =
+            "Choose a valid pickup time at least 30 minutes from now.";
+
+        if (message) message.textContent = errorMessage;
+        else alert(errorMessage);
 
         return;
     }
 
-    if (message) {
-        message.textContent = "Booking your order...";
-    }
+    if (message) message.textContent = "Booking your order...";
 
     try {
         const response = await fetch("/api/orders", {
@@ -340,9 +329,9 @@ async function bookFood(foodId, foodName) {
             },
             body: JSON.stringify({
                 studentName: studentName.trim(),
-                foodName: foodName,
+                foodName,
                 quantity: 1,
-                pickupTime: pickupTime
+                pickupTime
             })
         });
 
@@ -350,26 +339,21 @@ async function bookFood(foodId, foodName) {
 
         if (!response.ok) {
             throw new Error(
-                order.message ||
-                order.error ||
-                "Booking failed. Please try again."
+                order.message || order.error || "Booking failed."
             );
         }
 
-        // Update the booking message after successful booking.
         if (message) {
             message.textContent =
-                `Booking successful! Your Order ID is ${order.id}.`;
+                `Booking successful! Order ID: ${order.id}.`;
         }
 
-        // Fill the order tracking input automatically.
         const orderIdInput = document.getElementById("orderId");
 
         if (orderIdInput && order.id != null) {
             orderIdInput.value = order.id;
         }
 
-        // Show the colourful popup only after the server confirms.
         showOrderPopup({
             ...order,
             foodName: order.foodName || foodName
@@ -395,10 +379,7 @@ async function trackOrder() {
     const statusArea = document.getElementById("orderStatus");
 
     if (!orderIdInput || !statusArea) {
-        console.error(
-            "Order tracking HTML elements were not found."
-        );
-
+        console.error("Order tracking elements were not found.");
         return;
     }
 
@@ -412,7 +393,9 @@ async function trackOrder() {
     statusArea.textContent = "Checking your order...";
 
     try {
-        const response = await fetch("/api/orders");
+        const response = await fetch("/api/orders", {
+            cache: "no-store"
+        });
 
         if (!response.ok) {
             throw new Error("Could not load orders.");
@@ -443,8 +426,8 @@ async function trackOrder() {
 
         const currentIndex = statuses.indexOf(status);
 
-        document.querySelectorAll(".progress-step")
-            .forEach((step, index) => {
+        document.querySelectorAll(".progress-step").forEach(
+            (step, index) => {
                 step.classList.toggle(
                     "done",
                     currentIndex >= 0 && index < currentIndex
@@ -454,23 +437,16 @@ async function trackOrder() {
                     "active",
                     index === currentIndex
                 );
-            });
+            }
+        );
 
         statusArea.textContent =
-            `Order #${order.id}: ${status || "Status unavailable"} — ` +
-            (
-                currentIndex === 3
-                    ? "Enjoy your meal!"
-                    : currentIndex >= 0
-                        ? "Your order is progressing!"
-                        : "Please check the order status."
-            );
+            `Order #${order.id}: ${status || "Status unavailable"}`;
 
     } catch (error) {
-        document.querySelectorAll(".progress-step")
-            .forEach(step => {
-                step.classList.remove("done", "active");
-            });
+        document.querySelectorAll(".progress-step").forEach(step => {
+            step.classList.remove("done", "active");
+        });
 
         statusArea.textContent = error.message;
     }

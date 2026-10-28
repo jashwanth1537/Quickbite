@@ -39,16 +39,24 @@ public class SecurityConfig {
             HttpSecurity http) throws Exception {
 
         http
-            // Demo configuration: API requests use JSON.
+            // Demo configuration: CSRF is disabled.
             // For production, configure CSRF protection appropriately.
             .csrf(csrf -> csrf.disable())
 
+            // Allow H2 Console to display its frames.
+            .headers(headers ->
+                headers.frameOptions(frame -> frame.sameOrigin())
+            )
+
             .authorizeHttpRequests(auth -> auth
 
-                // Staff dashboard must require staff login
+                // H2 Console for local development
+                .requestMatchers("/h2-console/**").permitAll()
+
+                // Staff dashboard requires staff login
                 .requestMatchers("/staff.html").hasRole("STAFF")
 
-                // Staff order-status actions require staff login
+                // Staff order-status updates require staff login
                 .requestMatchers(
                     HttpMethod.PUT,
                     "/api/orders/*/preparing",
@@ -56,7 +64,7 @@ public class SecurityConfig {
                     "/api/orders/*/collected"
                 ).hasRole("STAFF")
 
-                // Login page and public student pages
+                // Public student pages and static resources
                 .requestMatchers(
                     "/",
                     "/index.html",
@@ -69,13 +77,18 @@ public class SecurityConfig {
                     "/favicon.ico"
                 ).permitAll()
 
-                // Student food, timing, and order APIs
-                .requestMatchers("/api/food", "/api/timings",
-                                 "/api/orders").permitAll()
+                // Public student APIs
+                .requestMatchers(
+                    "/api/food",
+                    "/api/timings",
+                    "/api/orders"
+                ).permitAll()
 
+                // All other requests require authentication
                 .anyRequest().authenticated()
             )
 
+            // Staff login
             .formLogin(form -> form
                 .loginPage("/staff-login.html")
                 .loginProcessingUrl("/login")
@@ -84,6 +97,7 @@ public class SecurityConfig {
                 .permitAll()
             )
 
+            // Staff logout
             .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/staff-login.html?logout=true")
